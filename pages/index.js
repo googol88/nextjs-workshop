@@ -1,8 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({ data }) {
+  const [image, setImage] = useState(data["latest_photos"][0]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -18,6 +20,7 @@ export default function Home() {
         <p className={styles.description}>
           Pictures from the Perseverance Rover
         </p>
+        <img src={image["img_src"]} alt="Navcam" />
       </main>
 
       <footer className={styles.footer}>
@@ -25,4 +28,11 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  let data = await fetch(
+	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
+  ).then((r) => r.json());
+  return { props: { data }, revalidate: 30 };
 }
