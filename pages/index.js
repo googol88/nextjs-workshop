@@ -42,10 +42,10 @@ export async function getStaticProps() {
   ];
   cameras.forEach(async (camera) => {
     const response = await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos&camera=${camera}&api_key=${process.env.KEY}`
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?camera=${camera}&api_key=${process.env.KEY}`
     ).then((r) => r.json());
-    console.log(camera, response)
-    response.push(response["latest_photos"][0]);
+    data.push(response["latest_photos"][0]);
+    console.log(data);
   });
   /*let data = await fetch(
 	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
