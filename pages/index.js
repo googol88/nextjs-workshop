@@ -3,8 +3,7 @@ import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ data }) {
-  const [image, setImage] = useState(data["latest_photos"][0]);
-
+  console.log(data)
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +19,10 @@ export default function Home({ data }) {
         <p className={styles.description}>
           Pictures from the Perseverance Rover
         </p>
-        <img src={image["img_src"]} alt="Navcam" />
+        {/*data.map((image, id) => (
+          <img key={id} src={image.img_src} alt={image.camera.full_name} />
+        ))*/}
+        {/*<img src={image["img_src"]} alt={image.camera["full_name"]} />*/}
       </main>
 
       <footer className={styles.footer}>
@@ -31,8 +33,22 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  let data = await fetch(
+  let data = [];
+  const cameras = [
+    "NAVCAM_LEFT",
+    "MCZ_LEFT",
+    "MCZ_RIGHT",
+    "SKYCAM"
+  ];
+  cameras.forEach(async (camera) => {
+    const response = await fetch(
+      `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos&camera=${camera}&api_key=${process.env.KEY}`
+    ).then((r) => r.json());
+    console.log(camera, response)
+    response.push(response["latest_photos"][0]);
+  });
+  /*let data = await fetch(
 	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
-  ).then((r) => r.json());
+  ).then((r) => r.json());*/
   return { props: { data }, revalidate: 30 };
 }
