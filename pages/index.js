@@ -3,7 +3,7 @@ import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ data }) {
-  console.log(data)
+  const [image, setImage] = useState(data["latest_photos"][0]);
   return (
     <div className={styles.container}>
       <Head>
@@ -22,7 +22,7 @@ export default function Home({ data }) {
         {/*data.map((image, id) => (
           <img key={id} src={image.img_src} alt={image.camera.full_name} />
         ))*/}
-        {/*<img src={image["img_src"]} alt={image.camera["full_name"]} />*/}
+        <img src={image["img_src"]} alt={image.camera["full_name"]} />
       </main>
 
       <footer className={styles.footer}>
@@ -33,7 +33,7 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  let data = [];
+  /*let data = [];
   const cameras = [
     "NAVCAM_LEFT",
     "MCZ_LEFT",
@@ -46,9 +46,9 @@ export async function getStaticProps() {
     ).then((r) => r.json());
     data.push(response["latest_photos"][0]);
     console.log(data);
-  });
-  /*let data = await fetch(
+  });*/
+  let data = await fetch(
 	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
-  ).then((r) => r.json());*/
+  ).then((r) => r.json());
   return { props: { data }, revalidate: 30 };
 }
