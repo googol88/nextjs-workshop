@@ -1,34 +1,19 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import styles from '../styles/Home.module.css'
+import Main from '../components/main';
 
 export default function Home({ data }) {
   const [image, setImage] = useState(data["latest_photos"][0]);
+  console.log(image);
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Mars Rover Cam</title>
         <meta name="description" content="Pictures from the Perseverance Rover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Mars Rover Cam
-        </h1>
-        <p className={styles.description}>
-          Pictures from the Perseverance Rover
-        </p>
-        {/*data.map((image, id) => (
-          <img key={id} src={image.img_src} alt={image.camera.full_name} />
-        ))*/}
-        <img src={image["img_src"]} alt={image.camera["full_name"]} />
-      </main>
-
-      <footer className={styles.footer}>
-        {new Date().toLocaleDateString()}
-      </footer>
-    </div>
+      <Main url={image["img_src"]} title={image.camera["full_name"]} />
+    </>
   )
 }
 
