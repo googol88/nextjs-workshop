@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import { useState } from 'react'
 import Main from '../components/main';
 
-export default function Home({ data }) {
-  const [image, setImage] = useState(data["latest_photos"][0]);
+export default function App({ data }) {
+  const image = data["latest_photos"][0];
   console.log(image);
   return (
     <>
