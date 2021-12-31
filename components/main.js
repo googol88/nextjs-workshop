@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link'
 import styles from '../styles/Main.module.css'
 
@@ -27,7 +28,14 @@ export default function Main({url, title, date, latest}) {
         {/*data.map((image, id) => (
           <img key={id} src={image.img_src} alt={image.camera.full_name} />
         ))*/}
-        <img src={url} alt={title} />
+        <Image
+          layout="fill"
+          priority={true}
+          quality={100}
+          src={url} 
+          alt={title} 
+        />
+        
       </main>
 
       <footer className={styles.footer}>
