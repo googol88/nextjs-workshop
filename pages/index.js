@@ -11,7 +11,7 @@ export default function App({ data }) {
         <meta name="description" content="Pictures from the Perseverance Rover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main url={image["img_src"]} title={image.camera["full_name"]} />
+      <Main url={image["img_src"]} title={image.camera["full_name"]} date={image.earth_date} />
     </>
   )
 }

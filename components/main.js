@@ -1,6 +1,19 @@
+import Link from 'next/link'
 import styles from '../styles/Main.module.css'
 
-export default function Main({url, title}) {
+function getYesterday(firstDate) {
+  let yesterday = new Date(firstDate);
+  yesterday.setDate(yesterday.getDate() - 1);
+  return yesterday.toISOString().split("T")[0];
+}
+
+function getTomorrow(firstDate) {
+  let tomorrow = new Date(firstDate);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return tomorrow.toISOString().split("T")[0];
+}
+
+export default function Main({url, title, date, latest}) {
   return (
     <div className={styles.container}>
 
@@ -18,7 +31,9 @@ export default function Main({url, title}) {
       </main>
 
       <footer className={styles.footer}>
-        {new Date().toLocaleDateString()}
+        <Link href={`/${getYesterday(date)}`}>&larr;</Link>
+        {date}
+        <Link href={`/${getTomorrow(date)}`}>&rarr;</Link>
       </footer>
     </div>
   )
