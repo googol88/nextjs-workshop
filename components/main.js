@@ -14,7 +14,8 @@ function getTomorrow(firstDate) {
   return tomorrow.toISOString().split("T")[0];
 }
 
-export default function Main({url, title, date, latest}) {
+export default function Main({ data }) {
+  const image = data["latest_photos"][0];
   return (
     <div className={styles.container}>
 
@@ -32,16 +33,16 @@ export default function Main({url, title, date, latest}) {
           layout="fill"
           priority={true}
           quality={100}
-          src={url} 
-          alt={title} 
+          src={image.img_src} 
+          alt={image.camera.full_name} 
         />
         
       </main>
 
       <footer className={styles.footer}>
-        <Link href={`/${getYesterday(date)}`}>&larr;</Link>
-        {date}
-        <Link href={`/${getTomorrow(date)}`}>&rarr;</Link>
+        <Link href={`/${getYesterday(image.earth_date)}`}>&larr;</Link>
+        {image.earth_date}
+        <Link href={`/${getTomorrow(image.earth_date)}`}>&rarr;</Link>
       </footer>
     </div>
   )
