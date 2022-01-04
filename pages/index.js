@@ -9,7 +9,7 @@ export default function App({ data }) {
         <meta name="description" content="Pictures from the Perseverance Rover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main data={data} />
+      <Main images={data.latest_photos} />
     </>
   )
 }
@@ -30,7 +30,7 @@ export async function getStaticProps() {
     console.log(data);
   });*/
   let data = await fetch(
-	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
   ).then((r) => r.json());
   return { props: { data }, revalidate: 30 };
 }

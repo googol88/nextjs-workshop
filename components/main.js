@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styles from '../styles/Main.module.css'
 
@@ -14,8 +15,10 @@ function getTomorrow(firstDate) {
   return tomorrow.toISOString().split("T")[0];
 }
 
-export default function Main({ data }) {
-  const image = data["latest_photos"][0];
+export default function Main({ images }) {
+  const router = useRouter();
+  const image = images[0];
+  const date = router.asPath === '/' ? image.earth_date : router.asPath.replace('/', '');
   return (
     <div className={styles.container}>
 
@@ -29,20 +32,23 @@ export default function Main({ data }) {
         {/*data.map((image, id) => (
           <img key={id} src={image.img_src} alt={image.camera.full_name} />
         ))*/}
-        <Image
-          layout="fill"
-          priority={true}
-          quality={100}
-          src={image.img_src} 
-          alt={image.camera.full_name} 
-        />
-        
+        {image ? (
+          <Image
+            layout="fill"
+            priority={true}
+            quality={100}
+            src={image.img_src} 
+            alt={image.camera.full_name} 
+          />
+        ) : (
+          <p>No picture available</p>
+        )}
       </main>
 
       <footer className={styles.footer}>
-        <Link href={`/${getYesterday(image.earth_date)}`}>&larr;</Link>
-        {image.earth_date}
-        <Link href={`/${getTomorrow(image.earth_date)}`}>&rarr;</Link>
+        <Link href={`/${getYesterday(date)}`}>&larr;</Link>
+        {date}
+        <Link href={`/${getTomorrow(date)}`}>&rarr;</Link>
       </footer>
     </div>
   )
