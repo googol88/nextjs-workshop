@@ -26,10 +26,31 @@
   display: flex;
   flex: 1;
   padding: 2rem 0;
-  background-color: #fafafa;
-  border-top: 1px solid #eaeaea;
+  background-color: #000000aa;
+  backdrop-filter: blur(20px);
+  --webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid #262626;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  margin: 4px;
+  padding: 4px 8px;
+  background-color: #000;
+  border: 1px solid #262626;
+  border-radius: 8px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: #262626;
+  border-color: #4d4d4d;
+}
+
+.date {
+  margin: 0 32px;
 }
 
 .footer a {

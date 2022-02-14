@@ -46,9 +46,11 @@ export default function Main({ images }) {
       </main>
 
       <footer className={styles.footer}>
-        <Link href={`/${getYesterday(date)}`}>&larr;</Link>
-        {date}
-        <Link href={`/${getTomorrow(date)}`}>&rarr;</Link>
+        <div className={styles.btn}>
+          <Link href={`/${getYesterday(date)}`}>&larr;</Link>
+        </div>
+        <p className={styles.date}>{date}</p>
+        <div className={styles.btn}><Link className={styles.btn} href={`/${getTomorrow(date)}`}>&rarr;</Link></div>
       </footer>
     </div>
   )
