@@ -23,23 +23,20 @@ export default function Main({ images }) {
     <div className={styles.container}>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        {/*<h1 className={styles.title}>
           Mars Rover Cam
         </h1>
         <p className={styles.description}>
           Pictures from the Perseverance Rover
         </p>
-        {/*data.map((image, id) => (
+        {data.map((image, id) => (
           <img key={id} src={image.img_src} alt={image.camera.full_name} />
         ))*/}
         {image ? (
-          <Image
-            layout="fill"
-            priority={true}
-            quality={100}
-            src={image.img_src} 
-            alt={image.camera.full_name} 
-          />
+          <>
+            <div className={styles.img} style={{backgroundImage: `url(${image.img_src})`}}></div>
+            <p className={styles.label}>{image.camera.full_name}</p>
+          </>
         ) : (
           <p>No picture available</p>
         )}
