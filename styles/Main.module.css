@@ -10,9 +10,14 @@
 }
 
 .label {
+  z-index: 9999;
   position: fixed;
   right: 0;
-  bottom: 3rem;
+  bottom: 4rem;
+  background-color: #262626;
+  padding: 4px 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .container {
@@ -36,7 +41,7 @@
   bottom: 0;
   display: flex;
   flex: 1;
-  padding: 2rem 0;
+  padding: 1rem 0;
   background-color: #000000aa;
   backdrop-filter: blur(20px);
   --webkit-backdrop-filter: blur(20px);
