@@ -1,12 +1,24 @@
 .img {
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.img.top {
+  top: 0;
+  bottom: calc(50% + 3rem / 2);
+}
+.img.bottom {
+  top: calc(50% - 3rem / 2);
+  bottom: 3rem;
+}
+.img.left {
+  left: 0;
+  right: 50%;
+}
+.img.right {
+  left: 50%;
+  right: 0;
 }
 
 .label {
@@ -41,7 +53,7 @@
   bottom: 0;
   display: flex;
   flex: 1;
-  padding: 1rem 0;
+  height: 3rem;
   background-color: #000000aa;
   backdrop-filter: blur(20px);
   --webkit-backdrop-filter: blur(20px);

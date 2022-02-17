@@ -34,7 +34,10 @@ export default function Main({ images }) {
         ))*/}
         {image ? (
           <>
-            <div className={styles.img} style={{backgroundImage: `url(${image.img_src})`}}></div>
+            <div className={`${styles.img} ${styles.top} ${styles.left}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
+            <div className={`${styles.img} ${styles.top} ${styles.right}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
+            <div className={`${styles.img} ${styles.bottom} ${styles.left}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
+            <div className={`${styles.img} ${styles.bottom} ${styles.right}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
             <p className={styles.label}>{image.camera.full_name}</p>
           </>
         ) : (
