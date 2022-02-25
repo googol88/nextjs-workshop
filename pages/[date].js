@@ -9,7 +9,7 @@ export default function App({ data, latest }) {
         <meta name="description" content="Pictures from the Perseverance Rover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main images={data.photos} />
+      <Main images={data.photos} latest={data.latest} />
     </>
   )
 }
@@ -47,5 +47,5 @@ export async function getStaticProps({ params }) {
   let data = await fetch(
 	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=${process.env.KEY}&earth_date=${params.date}`
   ).then((r) => r.json());
-  return { props: { data, latest: currentDate == params.date ? true : false }, revalidate: 30 };
+  return { props: { data, latest: currentDate == params.date }, revalidate: 30 };
 }

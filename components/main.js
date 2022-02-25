@@ -31,7 +31,7 @@ export default function Main({ images }) {
         {images ? (
           <>
             {images.slice(0, 4).map((image, index) => (
-              <a key={index} href={images.img_src}>
+              <a key={index} href={image.img_src} target='_blank'>
                 <div className={`${styles.img} ` + corner[index]} style={{backgroundImage: `url(${image.img_src})`}}></div>
               </a>
             ))}

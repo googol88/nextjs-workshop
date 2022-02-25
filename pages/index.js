@@ -9,7 +9,7 @@ export default function App({ data }) {
         <meta name="description" content="Pictures from the Perseverance Rover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main images={data.latest_photos} />
+      <Main images={data.latest_photos} latest={true} />
     </>
   )
 }
