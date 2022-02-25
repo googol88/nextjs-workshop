@@ -15,7 +15,7 @@ function getTomorrow(firstDate) {
   return tomorrow.toISOString().split("T")[0];
 }
 
-export default function Main({ images }) {
+export default function Main({ images, latest }) {
   const router = useRouter();
   const date = router.asPath === '/' ? images[0].earth_date : router.asPath.replace('/', '');
   const corner = [
@@ -47,9 +47,9 @@ export default function Main({ images }) {
           <a className={styles.btn}>&#x25C0;</a>
         </Link>
         <p className={styles.date}>{date}</p>
-        <Link className={styles.btn} href={`/${getTomorrow(date)}`}>
+        {!latest && <Link className={styles.btn} href={`/${getTomorrow(date)}`}>
           <a className={styles.btn}>&#x25B6;</a>
-        </Link>
+        </Link>}
       </footer>
     </div>
   )
