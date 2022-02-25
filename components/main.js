@@ -30,15 +30,11 @@ export default function Main({ images }) {
       <main className={styles.main}>
         {images ? (
           <>
-            {images.slice(0, 4).map((image, index) => {
+            {images.slice(0, 4).map((image, index) => (
               <a key={index} href={images.img_src}>
                 <div className={`${styles.img} ` + corner[index]} style={{backgroundImage: `url(${image.img_src})`}}></div>
               </a>
-            })}
-            {/*<div className={`${styles.img} ${styles.top} ${styles.left}`} style={{backgroundImage: `url(${images[0].img_src})`}}></div>
-            <div className={`${styles.img} ${styles.top} ${styles.right}`} style={{backgroundImage: `url(${images[1].img_src})`}}></div>
-            <div className={`${styles.img} ${styles.bottom} ${styles.left}`} style={{backgroundImage: `url(${images[2].img_src})`}}></div>
-            <div className={`${styles.img} ${styles.bottom} ${styles.right}`} style={{backgroundImage: `url(${images[3].img_src})`}}></div>*/}
+            ))}
             <p className={styles.label}>{images[0].camera.full_name}</p>
           </>
         ) : (
