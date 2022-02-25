@@ -25,7 +25,7 @@
   z-index: 9999;
   position: fixed;
   right: 0;
-  bottom: 4rem;
+  bottom: 3rem;
   background-color: #262626;
   padding: 4px 8px;
   border-top-left-radius: 8px;
@@ -54,6 +54,7 @@
   display: flex;
   flex: 1;
   height: 3rem;
+  box-shadow: 0 -0.5rem 1rem #00000055;
   background-color: #000000aa;
   backdrop-filter: blur(20px);
   --webkit-backdrop-filter: blur(20px);

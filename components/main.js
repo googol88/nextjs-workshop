@@ -32,12 +32,12 @@ export default function Main({ images }) {
         {data.map((image, id) => (
           <img key={id} src={image.img_src} alt={image.camera.full_name} />
         ))*/}
-        {image ? (
+        {images ? (
           <>
-            <div className={`${styles.img} ${styles.top} ${styles.left}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
-            <div className={`${styles.img} ${styles.top} ${styles.right}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
-            <div className={`${styles.img} ${styles.bottom} ${styles.left}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
-            <div className={`${styles.img} ${styles.bottom} ${styles.right}`} style={{backgroundImage: `url(${image.img_src})`}}></div>
+            <div className={`${styles.img} ${styles.top} ${styles.left}`} style={{backgroundImage: `url(${images[0].img_src})`}}></div>
+            <div className={`${styles.img} ${styles.top} ${styles.right}`} style={{backgroundImage: `url(${images[1].img_src})`}}></div>
+            <div className={`${styles.img} ${styles.bottom} ${styles.left}`} style={{backgroundImage: `url(${images[2].img_src})`}}></div>
+            <div className={`${styles.img} ${styles.bottom} ${styles.right}`} style={{backgroundImage: `url(${images[3].img_src})`}}></div>
             <p className={styles.label}>{image.camera.full_name}</p>
           </>
         ) : (

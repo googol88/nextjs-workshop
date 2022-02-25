@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
   ).latest_photos[0].earth_date;
 
   let data = await fetch(
-	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=${process.env.KEY}&earth_date=${params.date}&camera=navcam_left`
+	`https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?api_key=${process.env.KEY}&earth_date=${params.date}`
   ).then((r) => r.json());
   return { props: { data, latest: currentDate == params.date ? true : false }, revalidate: 30 };
 }

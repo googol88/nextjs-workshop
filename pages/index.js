@@ -30,7 +30,7 @@ export async function getStaticProps() {
     console.log(data);
   });*/
   let data = await fetch(
-    `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}&camera=navcam_left`
+    `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}`
   ).then((r) => r.json());
   return { props: { data }, revalidate: 30 };
 }
