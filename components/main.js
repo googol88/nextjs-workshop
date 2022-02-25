@@ -17,28 +17,29 @@ function getTomorrow(firstDate) {
 
 export default function Main({ images }) {
   const router = useRouter();
-  const image = images[0];
-  const date = router.asPath === '/' ? image.earth_date : router.asPath.replace('/', '');
+  const date = router.asPath === '/' ? images[0].earth_date : router.asPath.replace('/', '');
+  const corner = [
+    (styles.top+' '+styles.left),
+    (styles.top+' '+styles.right),
+    (styles.bottom+' '+styles.left),
+    (styles.bottom+' '+styles.right)
+  ];
   return (
     <div className={styles.container}>
 
       <main className={styles.main}>
-        {/*<h1 className={styles.title}>
-          Mars Rover Cam
-        </h1>
-        <p className={styles.description}>
-          Pictures from the Perseverance Rover
-        </p>
-        {data.map((image, id) => (
-          <img key={id} src={image.img_src} alt={image.camera.full_name} />
-        ))*/}
         {images ? (
           <>
-            <div className={`${styles.img} ${styles.top} ${styles.left}`} style={{backgroundImage: `url(${images[0].img_src})`}}></div>
+            {images.slice(0, 4).map((image, index) => {
+              <a key={index} href={images.img_src}>
+                <div className={`${styles.img} ` + corner[index]} style={{backgroundImage: `url(${image.img_src})`}}></div>
+              </a>
+            })}
+            {/*<div className={`${styles.img} ${styles.top} ${styles.left}`} style={{backgroundImage: `url(${images[0].img_src})`}}></div>
             <div className={`${styles.img} ${styles.top} ${styles.right}`} style={{backgroundImage: `url(${images[1].img_src})`}}></div>
             <div className={`${styles.img} ${styles.bottom} ${styles.left}`} style={{backgroundImage: `url(${images[2].img_src})`}}></div>
-            <div className={`${styles.img} ${styles.bottom} ${styles.right}`} style={{backgroundImage: `url(${images[3].img_src})`}}></div>
-            <p className={styles.label}>{image.camera.full_name}</p>
+            <div className={`${styles.img} ${styles.bottom} ${styles.right}`} style={{backgroundImage: `url(${images[3].img_src})`}}></div>*/}
+            <p className={styles.label}>{images[0].camera.full_name}</p>
           </>
         ) : (
           <p>No picture available</p>

@@ -23,9 +23,9 @@ export async function getStaticPaths() {
   
   let currentDate = (
     await fetch(
-      `https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/latest_photos?api_key=${process.env.KEY}`
+      `https://api.nasa.gov/mars-photos/api/v1/manifests/perseverance?api_key=${process.env.KEY}`
     ).then((r) => r.json())
-  ).latest_photos[0].earth_date;
+  ).photo_manifest.max_date;
   
   return {
     paths: [...Array(180).keys()].map((x) => ({
