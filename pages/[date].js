@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   ).photo_manifest.max_date;
   
   return {
-    paths: [...Array(180).keys()].map((x) => ({
+    paths: [...Array(30).keys()].map((x) => ({
       params: {
         date: getDateX(currentDate, x),
       },
