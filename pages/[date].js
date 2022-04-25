@@ -9,16 +9,17 @@ export default function App({ data, latest }) {
         <meta name="description" content="Pictures from the Perseverance Rover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main images={data.photos} latest={data.latest} />
+      <Main images={data && data.photos} latest={data && data.latest} />
     </>
   )
 }
 
 export async function getStaticPaths() {
   function getDateX(firstDate, daysBack) {
-    let yesterday = new Date(firstDate);
-    yesterday.setDate(yesterday.getDate() - daysBack);
-    return yesterday.toISOString().split("T")[0];
+    let date = new Date(firstDate);
+    date.setDate(date.getDate() - daysBack);
+    console.log(date);
+    return date.toISOString().split("T")[0];
   }
   
   let currentDate = (
@@ -33,11 +34,12 @@ export async function getStaticPaths() {
         date: getDateX(currentDate, x),
       },
     })),
-    fallback: true
+    fallback: "blocking"
   };
 }
 
 export async function getStaticProps({ params }) {
+  // later, add try catch block to catch 404s, see https://github.com/sampoder/intro-to-nextjs
   let currentDate = (
     await fetch(
       `https://api.nasa.gov/mars-photos/api/v1/manifests/perseverance?api_key=${process.env.KEY}`
