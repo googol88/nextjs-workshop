@@ -21,7 +21,6 @@ export async function getStaticPaths() {
   function getDateX(firstDate, daysBack) {
     let date = new Date(firstDate);
     date.setDate(date.getDate() - daysBack);
-    console.log(date);
     return date.toISOString().split("T")[0];
   }
 

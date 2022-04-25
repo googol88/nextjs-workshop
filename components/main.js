@@ -30,7 +30,7 @@ export default function Main({ images, latest }) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {images ? (
+        {(images && images.length !== 0) ? (
           <>
             {images.slice(0, 4).map((image, index) => (
               <a
